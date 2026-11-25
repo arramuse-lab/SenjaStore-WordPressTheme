@@ -1,0 +1,490 @@
+/*
+Theme Name: Senja Store
+Author: Komara
+Description: Senja Store is a clean, fast WooCommerce storefront theme with a customisable homepage, category navigation, product sliders and a trust bar. It works without WooCommerce too.
+Version: 1.0.0
+Requires at least: 6.4
+Tested up to: 6.8
+Requires PHP: 7.4
+License: GNU General Public License v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: senja-store
+Tags: blog, e-commerce, grid-layout, one-column, two-columns, right-sidebar, left-sidebar, footer-widgets, custom-background, custom-colors, custom-logo, custom-menu, featured-images, threaded-comments, translation-ready, full-width-template, sticky-post
+*/
+
+/* ============================================================
+   Senja Store — Liquid Glass stylesheet (iOS 26 / 27 style)
+   Palette: teal #0F766E, amber #F59E0B, orange #EA580C
+   Glass: translucent white surfaces, blur(20px) saturate(180%),
+   1px light borders, soft specular highlights, large radii.
+   Text stays dark ink #1F2937 on light glass for readability.
+   ============================================================ */
+:root {
+	--senja-primary: #0f766e;
+	--senja-primary-dark: #115e59;
+	--senja-primary-light: #ccfbf1;
+	--senja-accent: #f59e0b;
+	--senja-accent-2: #ea580c;
+	--senja-ink: #1f2937;
+	--senja-muted: #6b7280;
+	--senja-bg: #f8faf9;
+	--senja-surface: #ffffff;
+	--senja-border: #e5e7eb;
+	--senja-radius: 20px;
+	--senja-radius-lg: 28px;
+	--senja-shadow: 0 4px 16px rgba(15, 118, 110, 0.08);
+	--senja-shadow-lg: 0 12px 32px rgba(15, 118, 110, 0.14);
+	--senja-font-body: "Plus Jakarta Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+	--senja-font-heading: "Fraunces", Georgia, "Times New Roman", serif;
+	/* Liquid Glass tokens */
+	--senja-glass-bg: rgba(255, 255, 255, 0.55);
+	--senja-glass-bg-strong: rgba(255, 255, 255, 0.68);
+	--senja-glass-bg-soft: rgba(255, 255, 255, 0.42);
+	--senja-glass-border: rgba(255, 255, 255, 0.65);
+	--senja-glass-border-soft: rgba(255, 255, 255, 0.45);
+	--senja-glass-blur: blur(20px) saturate(180%);
+	--senja-glass-shadow: 0 8px 32px rgba(15, 118, 110, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.75);
+	--senja-glass-shadow-lg: 0 20px 48px rgba(15, 118, 110, 0.16), inset 0 1px 0 rgba(255, 255, 255, 0.8), inset 0 -1px 0 rgba(255, 255, 255, 0.25);
+	--senja-glass-teal: rgba(15, 118, 110, 0.16);
+	--senja-glass-amber: rgba(245, 158, 11, 0.18);
+}
+
+/* ---------- Reset / base ---------- */
+*, *::before, *::after { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; }
+body {
+	margin: 0;
+	/* Colourful gradient mesh behind all glass — teal / amber / orange, translucent, never flat */
+	background:
+		radial-gradient(720px 480px at 8% -5%, rgba(245, 158, 11, 0.38), rgba(245, 158, 11, 0) 65%),
+		radial-gradient(820px 560px at 92% 4%, rgba(15, 118, 110, 0.42), rgba(15, 118, 110, 0) 65%),
+		radial-gradient(640px 480px at 78% 58%, rgba(234, 88, 12, 0.26), rgba(234, 88, 12, 0) 65%),
+		radial-gradient(700px 520px at 12% 78%, rgba(13, 148, 136, 0.3), rgba(13, 148, 136, 0) 65%),
+		linear-gradient(180deg, #eef6f3 0%, #f8faf9 45%, #fdf6e8 100%);
+	background-attachment: fixed;
+	color: var(--senja-ink);
+	font-family: var(--senja-font-body);
+	font-size: 1rem;
+	line-height: 1.6;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-family: var(--senja-font-heading);
+	line-height: 1.2;
+	margin: 0 0 0.6em;
+	color: var(--senja-ink);
+}
+p { margin: 0 0 1em; }
+a { color: var(--senja-primary); text-decoration: none; }
+a:hover, a:focus { color: var(--senja-primary-dark); text-decoration: underline; }
+img { max-width: 100%; height: auto; }
+ul, ol { margin: 0 0 1em; padding-left: 1.4em; }
+button, input, select, textarea { font: inherit; color: inherit; }
+input[type="search"], input[type="text"], input[type="email"], input[type="url"], textarea {
+	border: 1px solid var(--senja-glass-border);
+	border-radius: 14px;
+	padding: 0.65em 0.9em;
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	width: 100%;
+}
+input[type="submit"], button[type="submit"], .button, .senja-btn {
+	display: inline-block;
+	background: linear-gradient(135deg, var(--senja-primary), var(--senja-primary-dark));
+	color: #fff;
+	border: 1px solid rgba(255, 255, 255, 0.55);
+	border-radius: 999px;
+	padding: 0.7em 1.6em;
+	font-weight: 700;
+	cursor: pointer;
+	text-decoration: none;
+	box-shadow: 0 8px 24px rgba(15, 118, 110, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+input[type="submit"]:hover, button[type="submit"]:hover, .button:hover, .senja-btn:hover {
+	background: linear-gradient(135deg, var(--senja-primary-dark), #0b4f4a);
+	border-color: rgba(255, 255, 255, 0.7);
+	color: #fff;
+	text-decoration: none;
+}
+.senja-btn--amber { background: linear-gradient(135deg, var(--senja-accent), var(--senja-accent-2)); border-color: rgba(255, 255, 255, 0.55); color: #fff; box-shadow: 0 8px 24px rgba(234, 88, 12, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.45); }
+.senja-btn--amber:hover { background: linear-gradient(135deg, var(--senja-accent-2), #c2410c); border-color: rgba(255, 255, 255, 0.7); color: #fff; }
+.senja-btn--outline {
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	color: var(--senja-primary-dark);
+	border: 1px solid var(--senja-glass-border);
+	box-shadow: var(--senja-glass-shadow);
+}
+.senja-btn--outline:hover { background: rgba(255, 255, 255, 0.8); color: var(--senja-primary-dark); }
+
+/* ---------- Accessibility: skip link + focus ---------- */
+.screen-reader-text {
+	border: 0; clip: rect(1px, 1px, 1px, 1px); clip-path: inset(50%);
+	height: 1px; margin: -1px; overflow: hidden; padding: 0;
+	position: absolute; width: 1px; word-wrap: normal;
+}
+.skip-link {
+	position: absolute; left: 1rem; top: -100px; z-index: 100000;
+	background: var(--senja-primary); color: #fff !important;
+	padding: 0.7em 1.2em; border-radius: 0 0 10px 10px; font-weight: 700;
+}
+.skip-link:focus { top: 0; text-decoration: none; }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible, [tabindex]:focus-visible {
+	outline: 3px solid var(--senja-primary);
+	outline-offset: 2px;
+}
+.main-navigation a:focus-visible, .senja-category-pills a:focus-visible { outline-color: var(--senja-accent); }
+
+/* ---------- Layout ---------- */
+.senja-container { max-width: 1280px; margin: 0 auto; padding: 0 20px; }
+.senja-content-wrap { max-width: 1200px; margin: 0 auto; padding: 2.5rem 20px; }
+.site-content { display: flex; flex-wrap: wrap; gap: 2.5rem; }
+#primary { flex: 1 1 640px; min-width: 0; }
+#secondary { flex: 0 1 300px; }
+.no-sidebar #primary { flex-basis: 100%; }
+.alignwide { max-width: 1280px; margin-left: auto; margin-right: auto; }
+.alignfull { max-width: none; width: 100%; }
+
+/* ---------- Announcement bar ---------- */
+.senja-announcement {
+	background: rgba(17, 94, 89, 0.72); color: #fff;
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+	font-size: 0.875rem; text-align: center; padding: 0.55em 1rem;
+}
+.senja-announcement p { margin: 0; }
+
+/* ---------- Header: sticky frosted glass ---------- */
+.site-header {
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border-bottom: 1px solid var(--senja-glass-border);
+	box-shadow: 0 8px 32px rgba(15, 118, 110, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.7);
+	position: sticky; top: 0; z-index: 900;
+}
+.senja-header-inner {
+	display: flex; align-items: center; gap: 1.5rem;
+	max-width: 1280px; margin: 0 auto; padding: 0.9rem 20px; flex-wrap: wrap;
+}
+.site-branding { display: flex; align-items: center; gap: 0.7rem; flex: 0 0 auto; }
+.site-branding .custom-logo { max-height: 48px; width: auto; }
+.site-title { font-family: var(--senja-font-heading); font-size: 1.7rem; font-weight: 700; margin: 0; line-height: 1; }
+.site-title a { color: var(--senja-ink); }
+.site-title a span { color: var(--senja-primary); }
+.site-description { margin: 0; font-size: 0.8rem; color: var(--senja-muted); }
+.senja-header-search { flex: 1 1 280px; max-width: 520px; margin: 0 auto; }
+.senja-header-search .search-form { display: flex; gap: 0; }
+.senja-header-search input[type="search"] {
+	border-radius: 999px 0 0 999px; border-right: 0;
+	background: rgba(255, 255, 255, 0.6);
+}
+.senja-header-search input[type="submit"] { border-radius: 0 999px 999px 0; padding: 0.65em 1.2em; }
+.senja-header-actions { display: flex; align-items: center; gap: 0.4rem; margin-left: auto; }
+.senja-header-actions a {
+	display: inline-flex; align-items: center; justify-content: center;
+	width: 42px; height: 42px; border-radius: 50%; color: var(--senja-ink);
+	background: var(--senja-glass-bg-soft);
+	border: 1px solid var(--senja-glass-border-soft);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+}
+.senja-header-actions a:hover { background: rgba(255, 255, 255, 0.85); color: var(--senja-primary-dark); text-decoration: none; }
+.senja-cart-count {
+	background: var(--senja-accent-2); color: #fff; border-radius: 999px;
+	font-size: 0.7rem; font-weight: 700; padding: 0.1em 0.5em; margin-left: 0.2em;
+}
+.senja-menu-toggle {
+	display: none; background: var(--senja-glass-bg); border: 1px solid var(--senja-glass-border);
+	-webkit-backdrop-filter: var(--senja-glass-blur); backdrop-filter: var(--senja-glass-blur);
+	border-radius: 12px; padding: 0.55em 0.9em; cursor: pointer;
+}
+
+/* ---------- Navigation ---------- */
+.main-navigation {
+	background: rgba(255, 255, 255, 0.35);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border-top: 1px solid var(--senja-glass-border-soft);
+}
+.main-navigation ul { list-style: none; margin: 0; padding: 0; display: flex; flex-wrap: wrap; gap: 0.2rem; }
+.main-navigation li { position: relative; }
+.main-navigation a {
+	display: block; padding: 0.8em 1em; color: var(--senja-ink); font-weight: 600; font-size: 0.95rem;
+}
+.main-navigation a:hover, .main-navigation a:focus { color: var(--senja-primary); text-decoration: none; }
+.main-navigation .current-menu-item > a, .main-navigation .current_page_item > a { color: var(--senja-primary); box-shadow: inset 0 -3px 0 var(--senja-accent); }
+.main-navigation ul ul {
+	display: none; position: absolute; left: 0; top: 100%; min-width: 220px;
+	background: var(--senja-glass-bg-strong);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border); border-radius: 20px;
+	box-shadow: var(--senja-glass-shadow-lg); z-index: 999; flex-direction: column; padding: 0.4rem;
+}
+.main-navigation li:hover > ul, .main-navigation li:focus-within > ul { display: flex; }
+
+/* ---------- Category pills: glass ---------- */
+.senja-category-pills {
+	background: transparent; border-bottom: 0; padding: 0.8rem 0;
+}
+.senja-category-pills ul { list-style: none; margin: 0; padding: 0; display: flex; gap: 0.6rem; overflow-x: auto; }
+.senja-category-pills a {
+	display: inline-block; white-space: nowrap; padding: 0.5em 1.1em;
+	border: 1px solid var(--senja-glass-border); border-radius: 999px;
+	color: var(--senja-ink); font-weight: 600; font-size: 0.9rem;
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	box-shadow: var(--senja-glass-shadow);
+}
+.senja-category-pills a:hover, .senja-category-pills a:focus {
+	background: rgba(15, 118, 110, 0.75); border-color: rgba(255, 255, 255, 0.6); color: #fff; text-decoration: none;
+}
+.senja-category-pills a[aria-current="true"], .senja-category-pills .current-cat a {
+	background: rgba(15, 118, 110, 0.8); border-color: rgba(255, 255, 255, 0.6); color: #fff;
+}
+
+/* ---------- Hero: big glass panel over gradient mesh ---------- */
+.senja-hero {
+	position: relative;
+	background:
+		radial-gradient(420px 260px at 88% 12%, rgba(245, 158, 11, 0.5), rgba(245, 158, 11, 0) 70%),
+		radial-gradient(480px 300px at 8% 88%, rgba(15, 118, 110, 0.45), rgba(15, 118, 110, 0) 70%),
+		linear-gradient(120deg, rgba(255, 255, 255, 0.68), rgba(255, 255, 255, 0.45));
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border);
+	border-radius: var(--senja-radius-lg); overflow: hidden; margin: 1.8rem 0 2.5rem;
+	box-shadow: var(--senja-glass-shadow-lg);
+	color: var(--senja-ink);
+}
+.senja-hero::before {
+	content: ""; position: absolute; inset: 0; pointer-events: none;
+	background: radial-gradient(560px 180px at 18% 0%, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0) 70%);
+}
+.senja-hero-inner { position: relative; display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items: center; padding: 3rem; }
+.senja-hero-eyebrow { color: #b45309; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; font-size: 0.8rem; margin: 0 0 0.8em; }
+.senja-hero h1, .senja-hero .senja-hero-title { color: var(--senja-ink); font-size: clamp(2rem, 4.5vw, 3.2rem); margin: 0 0 0.5em; }
+.senja-hero p { color: #374151; font-size: 1.1rem; }
+.senja-hero-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; margin-top: 1.5rem; }
+.senja-hero-visual {
+	border-radius: 22px; overflow: hidden;
+	box-shadow: var(--senja-glass-shadow-lg);
+	background: linear-gradient(135deg, rgba(204, 251, 241, 0.9), rgba(254, 243, 199, 0.9));
+	border: 1px solid var(--senja-glass-border);
+}
+.senja-hero-visual img { display: block; width: 100%; height: 100%; object-fit: cover; }
+
+/* ---------- Home sections ---------- */
+.senja-section { margin: 0 0 3rem; }
+.senja-section-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; margin-bottom: 1.4rem; flex-wrap: wrap; }
+.senja-section-head h2 { margin: 0; font-size: 1.7rem; }
+.senja-section-head a { font-weight: 700; font-size: 0.95rem; }
+
+/* ---------- Promo cards: glass, asymmetric 2-col ---------- */
+.senja-promos { display: grid; grid-template-columns: 1.35fr 1fr; gap: 1.4rem; }
+.senja-promo {
+	position: relative; overflow: hidden;
+	border: 1px solid var(--senja-glass-border);
+	border-radius: var(--senja-radius-lg); padding: 2rem; min-height: 220px;
+	display: flex; flex-direction: column; justify-content: flex-end; color: var(--senja-ink);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	box-shadow: var(--senja-glass-shadow-lg);
+}
+.senja-promo::before {
+	content: ""; position: absolute; inset: 0; pointer-events: none;
+	background: radial-gradient(360px 140px at 15% 0%, rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0) 70%);
+}
+.senja-promo--teal { background: linear-gradient(135deg, rgba(204, 251, 241, 0.75), rgba(255, 255, 255, 0.5)); }
+.senja-promo--amber { background: linear-gradient(135deg, rgba(254, 243, 199, 0.8), rgba(255, 255, 255, 0.5)); }
+.senja-promo h3 { position: relative; color: var(--senja-ink); margin: 0 0 0.4em; font-size: 1.5rem; }
+.senja-promo p { position: relative; color: #374151; margin: 0 0 1rem; }
+.senja-promo a { position: relative; color: var(--senja-primary-dark); font-weight: 700; text-decoration: underline; text-underline-offset: 3px; }
+
+/* ---------- Product grid / cards: glass ---------- */
+.senja-product-grid, ul.products {
+	list-style: none; margin: 0; padding: 0;
+	display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.4rem;
+}
+.senja-product-card, ul.products li.product {
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border);
+	border-radius: var(--senja-radius); padding: 1rem; text-align: center;
+	box-shadow: var(--senja-glass-shadow);
+	transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+}
+.senja-product-card:hover, ul.products li.product:hover {
+	transform: translateY(-6px);
+	border-color: rgba(15, 118, 110, 0.55);
+	background: rgba(255, 255, 255, 0.78);
+	box-shadow: 0 20px 44px rgba(15, 118, 110, 0.22), inset 0 1px 0 rgba(255, 255, 255, 0.85);
+}
+.senja-product-card img, ul.products li.product img {
+	border-radius: 14px; margin-bottom: 0.8rem; width: 100%;
+	background: linear-gradient(135deg, rgba(204, 251, 241, 0.9), rgba(254, 243, 199, 0.9));
+}
+.senja-product-card h3, ul.products li.product .woocommerce-loop-product__title { font-size: 1rem; font-family: var(--senja-font-body); font-weight: 700; margin: 0 0 0.4em; }
+.senja-product-card .price, ul.products li.product .price { color: var(--senja-primary-dark); font-weight: 700; font-size: 1.05rem; display: block; margin-bottom: 0.8rem; }
+.senja-product-card .price del, ul.products li.product .price del { color: var(--senja-muted); font-weight: 400; font-size: 0.85rem; }
+.woocommerce ul.products li.product .onsale {
+	background: var(--senja-accent-2); color: #fff; border-radius: 999px;
+	font-size: 0.75rem; font-weight: 700; padding: 0.3em 0.8em; min-height: 0; line-height: 1.4;
+}
+.woocommerce ul.products li.product .star-rating { color: var(--senja-accent); margin: 0 auto 0.6rem; }
+.senja-slider-wrap { position: relative; }
+.senja-slider-btn {
+	position: absolute; top: 42%; z-index: 5; width: 44px; height: 44px; border-radius: 50%;
+	background: var(--senja-glass-bg-strong);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border);
+	box-shadow: var(--senja-glass-shadow); cursor: pointer; font-size: 1.2rem; line-height: 1;
+}
+.senja-slider-btn--prev { left: -12px; }
+.senja-slider-btn--next { right: -12px; }
+
+/* ---------- Trust bar: glass panel ---------- */
+.senja-trust {
+	display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border);
+	border-radius: var(--senja-radius-lg); overflow: hidden;
+	box-shadow: var(--senja-glass-shadow-lg);
+}
+.senja-trust-item { padding: 1.4rem 1.2rem; text-align: center; border-left: 1px solid rgba(255, 255, 255, 0.6); }
+.senja-trust-item:first-child { border-left: 0; }
+.senja-trust-item h3 { font-family: var(--senja-font-body); font-size: 0.98rem; margin: 0 0 0.3em; }
+.senja-trust-item p { margin: 0; color: var(--senja-muted); font-size: 0.88rem; }
+.senja-trust-icon { font-size: 1.7rem; display: block; margin-bottom: 0.5rem; }
+
+/* ---------- Blog / posts ---------- */
+.senja-post-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4rem; }
+.senja-post-grid article, .post, .page {
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border);
+	border-radius: var(--senja-radius);
+	box-shadow: var(--senja-glass-shadow);
+}
+.senja-post-grid article { padding: 1.2rem; }
+.post, .page { margin-bottom: 2.5rem; padding: 1.4rem; }
+.entry-header { margin-bottom: 1rem; }
+.entry-title { font-size: 1.9rem; }
+.entry-title a { color: var(--senja-ink); }
+.entry-meta { color: var(--senja-muted); font-size: 0.88rem; margin-bottom: 0.8rem; }
+.entry-meta a { color: var(--senja-muted); }
+.post-thumbnail img { border-radius: var(--senja-radius); }
+.entry-content { overflow-wrap: break-word; }
+.entry-footer { color: var(--senja-muted); font-size: 0.88rem; border-top: 1px solid rgba(255, 255, 255, 0.6); padding-top: 1rem; margin-top: 1.5rem; }
+.sticky { border: 2px solid var(--senja-accent); border-radius: var(--senja-radius); padding: 1.4rem; }
+.page-links { clear: both; margin: 1.5rem 0; font-weight: 700; }
+.page-links a { margin: 0 0.3em; }
+.post-navigation, .posts-navigation, .pagination { margin: 2rem 0; }
+.nav-links { display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.nav-links a { font-weight: 700; }
+
+/* ---------- Sidebar / widgets: glass ---------- */
+.widget {
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border); border-radius: var(--senja-radius);
+	padding: 1.4rem; margin-bottom: 1.5rem; box-shadow: var(--senja-glass-shadow);
+}
+.widget-title { font-size: 1.15rem; margin: 0 0 0.9em; }
+.widget ul { list-style: none; padding: 0; margin: 0; }
+.widget ul li { padding: 0.35em 0; border-bottom: 1px solid rgba(255, 255, 255, 0.6); }
+.widget ul li:last-child { border-bottom: 0; }
+
+/* ---------- Comments ---------- */
+.comments-area { margin-top: 2.5rem; }
+.comment-list { list-style: none; padding: 0; }
+.comment-body {
+	border: 1px solid var(--senja-glass-border); border-radius: var(--senja-radius);
+	padding: 1.2rem; margin-bottom: 1rem;
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	box-shadow: var(--senja-glass-shadow);
+}
+.comment-meta { color: var(--senja-muted); font-size: 0.88rem; }
+.comment-reply-link { font-weight: 700; }
+
+/* ---------- Footer: darker translucent glass ---------- */
+.site-footer {
+	background: rgba(17, 94, 89, 0.82); color: #e6fffa; margin-top: 3rem;
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border-top: 1px solid rgba(255, 255, 255, 0.3);
+}
+.senja-footer-widgets { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; padding: 3rem 0 1.5rem; }
+.site-footer .widget { background: transparent; border: 0; padding: 0; color: #e6fffa; box-shadow: none; -webkit-backdrop-filter: none; backdrop-filter: none; }
+.site-footer .widget-title { color: #fff; }
+.site-footer a { color: #fde68a; }
+.site-footer a:hover { color: #fff; }
+.senja-footer-bottom { border-top: 1px solid rgba(255, 255, 255, 0.2); padding: 1.2rem 0; display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; font-size: 0.9rem; }
+.senja-footer-bottom .footer-menu ul { list-style: none; display: flex; gap: 1.2rem; margin: 0; padding: 0; flex-wrap: wrap; }
+
+/* ---------- 404 / search ---------- */
+.senja-not-found {
+	text-align: center; padding: 3rem 1rem;
+	background: var(--senja-glass-bg);
+	-webkit-backdrop-filter: var(--senja-glass-blur);
+	backdrop-filter: var(--senja-glass-blur);
+	border: 1px solid var(--senja-glass-border); border-radius: var(--senja-radius-lg);
+	box-shadow: var(--senja-glass-shadow-lg);
+}
+.senja-not-found h1 { font-size: 3rem; }
+
+/* ---------- Glass fallback: no backdrop-filter support ---------- */
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+	.site-header, .senja-category-pills a, .senja-hero, .senja-product-card, ul.products li.product,
+	.senja-trust, .widget, .comment-body, .senja-promo, .senja-not-found, .senja-btn--outline {
+		background: rgba(255, 255, 255, 0.92);
+	}
+	.senja-announcement, .site-footer { background: rgba(17, 94, 89, 0.94); }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 1024px) {
+	.senja-product-grid, ul.products { grid-template-columns: repeat(3, 1fr); }
+	.senja-trust { grid-template-columns: repeat(2, 1fr); }
+	.senja-trust-item:nth-child(3) { border-left: 0; }
+	.senja-trust-item { border-top: 1px solid rgba(255, 255, 255, 0.6); }
+	.senja-trust-item:nth-child(-n+2) { border-top: 0; }
+	.senja-post-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 768px) {
+	.senja-header-search { order: 3; flex-basis: 100%; max-width: none; }
+	.senja-menu-toggle { display: inline-block; }
+	.main-navigation { display: none; }
+	.main-navigation.toggled { display: block; }
+	.main-navigation ul { flex-direction: column; }
+	.main-navigation ul ul { position: static; display: none; box-shadow: none; border: 0; }
+	.main-navigation li:hover > ul, .main-navigation li:focus-within > ul { display: flex; }
+	.senja-hero-inner { grid-template-columns: 1fr; padding: 2rem; }
+	.senja-promos { grid-template-columns: 1fr; }
+	.senja-product-grid, ul.products { grid-template-columns: repeat(2, 1fr); }
+	.senja-footer-widgets { grid-template-columns: 1fr; }
+	.site-content { flex-direction: column; }
+	#secondary { flex-basis: 100%; }
+}
+@media (max-width: 520px) {
+	.senja-product-grid, ul.products { grid-template-columns: 1fr; }
+	.senja-post-grid { grid-template-columns: 1fr; }
+	.senja-trust { grid-template-columns: 1fr; }
+	.senja-trust-item { border-left: 0; border-top: 1px solid rgba(255, 255, 255, 0.6); }
+	.senja-trust-item:first-child { border-top: 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { transition: none !important; animation: none !important; }
+}
