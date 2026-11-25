@@ -3,6 +3,8 @@
 
 **Showcase your best products in a storefront that feels like golden hour.**
 
+<img alt="Senja Wordpress theme" src="demo.png">
+
 ### Theme Description
 
 **Senja Store** is a standalone WordPress theme that gives your online shop a warm, distinctive look. Teal and amber tones pair with subtle frosted-glass effects to create a sunset-inspired storefront. Product search and category navigation help shoppers find what they’re looking for, while a countdown banner highlights limited-time offers.
