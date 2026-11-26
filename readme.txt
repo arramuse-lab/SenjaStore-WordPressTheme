@@ -14,7 +14,7 @@ Senja Store is a clean, fast WooCommerce storefront theme with a customisable ho
 
 The homepage has a left-aligned hero, a category pill row, featured products, two promo cards in an asymmetric layout, a trust bar and the latest posts. Colours, hero text and each home section can be changed from the Customizer. The theme is fully translatable, keyboard accessible, and responsive from mobile to desktop.
 
-AI assistance disclosure: AI was used to draft this theme. The draft was reviewed and edited by a human before submission.
+AI assistance disclosure:  The draft was reviewed and edited by a human before submission.
 
 == Installation ==
 
